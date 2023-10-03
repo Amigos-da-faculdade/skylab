@@ -24,6 +24,8 @@
     "postcss": "latest",
     "prettier": "^3.0.3",
     "tailwindcss": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "vite-tsconfig-paths": "^4.2.1",
+    "vitest": "^0.34.6"
   }
 }
