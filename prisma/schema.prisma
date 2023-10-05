@@ -1,0 +1,133 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id             String    @id
+  name           String
+  email          String    @unique
+  password       String
+  city           String
+  church         String
+  profilePicture String?
+  phoneNumber    String
+  role           Role      @default(admin)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  lessons        Lesson[]
+  subjects       Subject[]
+  tests          Test[]
+}
+
+model Educator {
+  id             String    @id
+  name           String
+  email          String    @unique
+  password       String
+  city           String
+  church         String
+  profilePicture String?
+  phoneNumber    String
+  role           Role      @default(educator)
+  updatedAt      DateTime  @updatedAt
+  createdAt      DateTime  @default(now())
+  lessons        Lesson[]
+  subjects       Subject[]
+  tests          Test[]
+}
+
+model Lesson {
+  id                  String    @id
+  title               String
+  description         String
+  rating              Int?
+  streamingUrl        String
+  scriptureReferences String[]
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  active              Boolean
+  subjectId           String
+  authorId            String
+  assignedEducatorId  String?
+  educators           Educator? @relation(fields: [assignedEducatorId], references: [id], onUpdate: NoAction)
+  admins              Admin     @relation(fields: [authorId], references: [id])
+  subjects            Subject   @relation(fields: [subjectId], references: [id], onUpdate: NoAction)
+  tests               Test[]
+}
+
+model Question {
+  id             String       @id
+  title          String
+  questionType   QuestionType
+  correctAnswer  String?
+  answerCount    BigInt?
+  correctCount   BigInt?
+  incorrectCount BigInt?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  testId         String
+  choices        String[]
+  tests          Test         @relation(fields: [testId], references: [id], onUpdate: NoAction)
+}
+
+model Student {
+  id             String   @id
+  name           String
+  email          String   @unique
+  password       String
+  city           String
+  church         String
+  profilePicture String?
+  phoneNumber    String
+  role           Role     @default(student)
+  createdAt      DateTime @default(now())
+}
+
+model Subject {
+  id                 String    @id
+  title              String
+  description        String
+  cover_picture      String?
+  requirements       String[]
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  assignedEducatorId String?
+  authorId           String
+  lessons            Lesson[]
+  educators          Educator? @relation(fields: [assignedEducatorId], references: [id], onUpdate: NoAction)
+  admins             Admin     @relation(fields: [authorId], references: [id], onUpdate: NoAction)
+  tests              Test[]
+}
+
+model Test {
+  id                 String     @id
+  title              String
+  description        String
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+  assignedEducatorId String?
+  authorId           String
+  lessonId           String?
+  subjectId          String
+  questions          Question[]
+  educators          Educator?  @relation(fields: [assignedEducatorId], references: [id], onUpdate: NoAction)
+  admins             Admin      @relation(fields: [authorId], references: [id], onUpdate: NoAction)
+  lessons            Lesson?    @relation(fields: [lessonId], references: [id])
+  subjects           Subject    @relation(fields: [subjectId], references: [id], onUpdate: NoAction)
+}
+
+enum QuestionType {
+  choice
+  open
+}
+
+enum Role {
+  student
+  educator
+  admin
+}
