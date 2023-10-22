@@ -1,15 +1,17 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 import { appNavigation } from "@/config/app/app-navigation"
 import { cn } from "@/lib/utils"
-import { Banana } from "lucide-react"
+import { Box, Heart } from "lucide-react"
+import { Button } from "../ui/button"
 import { AppUserMenu } from "./app-user-menu"
 
 export function AppSidebar() {
   const pathname = usePathname()
+  const router = useRouter()
 
   const navigationMarkup = appNavigation
     .filter((item) => !!item.enabled)
@@ -28,7 +30,7 @@ export function AppSidebar() {
                       key={item.url}
                       href={item.url}
                       className={cn(
-                        "group flex h-8 w-full items-center gap-2 rounded-md border border-transparent px-2 py-1 text-sm hover:bg-primary hover:text-white",
+                        "group flex h-8 w-full items-center gap-2 rounded-md border border-transparent px-2 py-1 text-sm hover:bg-primary hover:text-white truncate",
                         isCurrentUrl && "bg-primary text-white dark:text-background"
                       )}
                     >
@@ -47,7 +49,7 @@ export function AppSidebar() {
                                   key={item.url}
                                   href={item.url}
                                   className={cn(
-                                    "group flex h-8 w-full items-center gap-2 rounded-md border border-transparent px-2 py-1 text-sm hover:bg-primary hover:text-white",
+                                    "group flex h-8 w-full items-center gap-2 rounded-md border border-transparent px-2 py-1 text-sm hover:bg-primary hover:text-white truncate",
                                     isCurrentUrl && "bg-primary text-white dark:text-background"
                                   )}
                                 >
@@ -75,12 +77,16 @@ export function AppSidebar() {
             href="/"
             className="hidden md:flex text-lg gap-2 items-center font-extrabold text-primary"
           >
-            <Banana />
-            Skylab
+            <Box className="rotate-45" />
+            EcoXP
           </Link>
         </div>
         <nav className="mt-6 flex w-full flex-col gap-4">
           <ul className="grid grid-flow-row auto-rows-max gap-2 text-sm">{navigationMarkup}</ul>
+          <Button onClick={() => router.push("/ativos")}>
+            <Heart className="mr-2 h-4 w-4 fill-white" />
+            Doar
+          </Button>
         </nav>
       </div>
       <AppUserMenu />

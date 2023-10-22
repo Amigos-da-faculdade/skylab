@@ -19,7 +19,7 @@ export const useUser = ({ onSuccess }: Props) => {
   useMount(async () => {
     const { data: userData } = await supabase.auth.getUser()
     const userComplement = await supabase
-      .from("Users_Complement")
+      .from("users_complement")
       .select("*")
       .eq("id", userData.user?.id)
 

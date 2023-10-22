@@ -23,8 +23,6 @@ export function AppUserMenu() {
 
   const { data: user, loading } = useUser({})
 
-  console.log(user)
-
   return loading ? (
     <Skeleton className="w-full h-[35px] rounded-full" />
   ) : (

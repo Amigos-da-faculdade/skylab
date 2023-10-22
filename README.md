@@ -1,6 +1,6 @@
-# Skylab
+# EcoXP
 
-## Skylab features
+## EcoXP features
 
 - Account with full information
 - Password recovery

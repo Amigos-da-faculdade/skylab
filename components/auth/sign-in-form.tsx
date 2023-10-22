@@ -19,7 +19,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { AuthCredentials, authCredentials } from "@/contracts/auth"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
-import { ArrowRight, Banana, Loader2 } from "lucide-react"
+import { ArrowRight, Box, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 
 export const SignInForm = () => {
@@ -55,8 +55,8 @@ export const SignInForm = () => {
             href="/"
             className="hidden md:flex text-lg gap-2 items-center font-extrabold text-primary"
           >
-            <Banana />
-            Skylab
+            <Box className="rotate-45" />
+            EcoXP
           </Link>
         </CardTitle>
       </CardHeader>

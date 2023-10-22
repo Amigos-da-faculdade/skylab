@@ -42,7 +42,7 @@ export const AccountDetails = () => {
 
   async function onSubmit(values: UpdateAccountType) {
     if (!user) return
-    const { error } = await supabase.from("Users_Complement").upsert({ ...values, id: user.id })
+    const { error } = await supabase.from("users_complement").upsert({ ...values, id: user.id })
     if (!!error) {
       return toast.error(error.message)
     }
@@ -57,7 +57,7 @@ export const AccountDetails = () => {
         <Card className="grid" style={{ gridTemplateColumns: "1fr 2fr" }}>
           <CardHeader>
             <CardTitle>Detalhes da conta</CardTitle>
-            <CardDescription>Informações da sua conta Skylab</CardDescription>
+            <CardDescription>Informações da sua conta EcoXP</CardDescription>
           </CardHeader>
           <CardContent className="!p-6">
             <Form {...form}>

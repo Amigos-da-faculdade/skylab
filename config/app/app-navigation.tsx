@@ -1,4 +1,4 @@
-import { HeartPulse, Home, Map } from "lucide-react"
+import { Heart, HeartHandshake, Home, LayoutGrid } from "lucide-react"
 
 export type AppNavigation = typeof appNavigation
 
@@ -8,34 +8,58 @@ export const appNavigation = [
     enabled: true,
     items: [
       {
-        label: "Início",
+        label: "Dashboard",
         enabled: true,
         url: "/inicio",
         icon: <Home height={16} width={16} />,
         items: [],
       },
-    ],
-  },
-  {
-    label: "Menu",
-    enabled: true,
-    items: [
       {
-        label: "Sustentabilidade",
+        label: "ONGs",
         enabled: true,
-        url: "/sustentabilidade",
-        icon: <HeartPulse height={16} width={16} />,
-        items: [
-          {
-            label: "Guias",
-            enabled: true,
-            url: "/sustentabilidade/guias",
-            icon: <Map height={16} width={16} />,
-          },
-        ],
+        url: "/ongs",
+        icon: <HeartHandshake height={16} width={16} />,
+        items: [],
+      },
+      {
+        label: "Ativos",
+        enabled: true,
+        url: "/ativos",
+        icon: <LayoutGrid height={16} width={16} />,
+      },
+      {
+        label: "Doações",
+        enabled: true,
+        url: "/doacoes",
+        icon: <Heart className="fill-primary text-primary" height={16} width={16} />,
+        items: [],
       },
     ],
   },
+  // {
+  //   label: "Meus ativos",
+  //   enabled: true,
+  //   items: [
+  //     {
+  //       label: "Segurança e Habitação Segura",
+  //       enabled: true,
+  //       url: "/ativos/1",
+  //       icon: <Home height={16} width={16} />,
+  //     },
+  //     {
+  //       label: "Urbanização Inclusiva e Sustentável",
+  //       enabled: true,
+  //       url: "/ativos/3",
+  //       icon: <Building height={16} width={16} />,
+  //     },
+  //     {
+  //       label: "Transporte Seguro e Sustentável",
+  //       enabled: true,
+  //       url: "/ativos/2",
+  //       icon: <Car height={16} width={16} />,
+  //     },
+  //   ],
+  // },
   // {
   //   label: "Configuração",
   //   enabled: true,

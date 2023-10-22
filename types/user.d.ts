@@ -6,4 +6,6 @@ export interface IUser {
   age: number
   id: string
   user_fk: string
+  url_photo: string
+  amount: number
 }
