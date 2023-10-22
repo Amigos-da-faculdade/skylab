@@ -116,22 +116,26 @@ export default function Page() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {donations?.map((item) => (
-                    <TableRow key={item.id}>
-                      <TableCell className="font-medium max-w-[200px] truncate whitespace-nowrap">
-                        <Link className="underline" href={`/ongs/${item.ong_id.id}`}>
-                          {item.ong_id.name}
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <Link className="underline" href={`/ativos/${item.asset_id.id}`}>
-                          {item.asset_id.name}
-                        </Link>
-                      </TableCell>
-                      <TableCell>{format(new Date(item.created_at), "dd/MM/yyyy HH:mm")}</TableCell>
-                      <TableCell className="text-right">{formatCurrency(item.amount)}</TableCell>
-                    </TableRow>
-                  ))}
+                  {donations
+                    ?.map((item) => (
+                      <TableRow key={item.id}>
+                        <TableCell className="font-medium max-w-[200px] truncate whitespace-nowrap">
+                          <Link className="underline" href={`/ongs/${item.ong_id.id}`}>
+                            {item.ong_id.name}
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <Link className="underline" href={`/ativos/${item.asset_id.id}`}>
+                            {item.asset_id.name}
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          {format(new Date(item.created_at), "dd/MM/yyyy HH:mm")}
+                        </TableCell>
+                        <TableCell className="text-right">{formatCurrency(item.amount)}</TableCell>
+                      </TableRow>
+                    ))
+                    .reverse()}
                 </TableBody>
               </Table>
             </CardContent>

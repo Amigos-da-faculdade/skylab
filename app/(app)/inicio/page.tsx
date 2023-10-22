@@ -37,7 +37,7 @@ export default function Page() {
     <main>
       <div className="mx-auto flex max-w-5xl justify-between px-6 py-8">
         <h1 className="text-slate-12 text-[28px] font-bold leading-[34px] tracking-[-0.416px]">
-          Bom dia, André
+          Bom dia, Davi
         </h1>
       </div>
       <div className="mx-auto max-w-5xl px-6 mb-8">

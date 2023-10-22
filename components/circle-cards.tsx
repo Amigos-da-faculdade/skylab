@@ -61,8 +61,8 @@ export const CirlcleCards = ({ user }: { user: IUser }) => {
             <PersonStanding size={50} strokeWidth={3} className="text-primary" />
           </div>
           <div className="flex flex-col items-center">
-            <Metric className="text-primary font-bold">{donationSum}</Metric>
-            <Text>Total doado</Text>
+            <Metric className="text-primary font-bold">{assets?.length}</Metric>
+            <Text>Ativos apoiados</Text>
           </div>
         </div>
       </div>
